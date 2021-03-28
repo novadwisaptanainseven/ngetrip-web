@@ -1,1 +1,18 @@
 // Here you can add other styles
+.my-link-style {
+  color: white !important;
+  transition: 0.3s;
+
+  &:hover {
+    color: rgb(224, 224, 224) !important;
+  }
+}
+
+.input-error {
+  border: 1px solid rgb(255, 80, 80);
+  border-radius: 5px;
+}
+
+.text-error {
+  font-size: 0.96em;
+}

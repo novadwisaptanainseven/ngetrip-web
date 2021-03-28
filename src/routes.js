@@ -1,84 +1,216 @@
-import React from 'react';
+import React from "react";
 
-const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
-const Tables = React.lazy(() => import('./views/base/tables/Tables'));
+const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 
-const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'));
-const Cards = React.lazy(() => import('./views/base/cards/Cards'));
-const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'));
-const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'));
-const BasicForms = React.lazy(() => import('./views/base/forms/BasicForms'));
+// Agent Travel
+const AgentTravel = React.lazy(() => import("./views/pages/AgentTravel"));
+const TambahAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/tambah")
+);
+const EditAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/edit")
+);
+const DetailAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/detail")
+);
+const KontakAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/Kontak")
+);
+const TambahKontakAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/Kontak/tambah")
+);
+const EditKontakAgentTravel = React.lazy(() =>
+  import("./views/pages/AgentTravel/Kontak/edit")
+);
 
-const Jumbotrons = React.lazy(() => import('./views/base/jumbotrons/Jumbotrons'));
-const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'));
-const Navbars = React.lazy(() => import('./views/base/navbars/Navbars'));
-const Navs = React.lazy(() => import('./views/base/navs/Navs'));
-const Paginations = React.lazy(() => import('./views/base/paginations/Pagnations'));
-const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'));
-const ProgressBar = React.lazy(() => import('./views/base/progress-bar/ProgressBar'));
-const Switches = React.lazy(() => import('./views/base/switches/Switches'));
-
-const Tabs = React.lazy(() => import('./views/base/tabs/Tabs'));
-const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'));
-const BrandButtons = React.lazy(() => import('./views/buttons/brand-buttons/BrandButtons'));
-const ButtonDropdowns = React.lazy(() => import('./views/buttons/button-dropdowns/ButtonDropdowns'));
-const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'));
-const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'));
-const Charts = React.lazy(() => import('./views/charts/Charts'));
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
-const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'));
-const Flags = React.lazy(() => import('./views/icons/flags/Flags'));
-const Brands = React.lazy(() => import('./views/icons/brands/Brands'));
-const Alerts = React.lazy(() => import('./views/notifications/alerts/Alerts'));
-const Badges = React.lazy(() => import('./views/notifications/badges/Badges'));
-const Modals = React.lazy(() => import('./views/notifications/modals/Modals'));
-const Colors = React.lazy(() => import('./views/theme/colors/Colors'));
-const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
-const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
-const Users = React.lazy(() => import('./views/users/Users'));
-const User = React.lazy(() => import('./views/users/User'));
+// Paket Wisata
+const PaketWisata = React.lazy(() => import("./views/pages/PaketWisata"));
+const TambahPaketWisata = React.lazy(() =>
+  import("./views/pages/PaketWisata/tambah")
+);
+const EditPaketWisata = React.lazy(() =>
+  import("./views/pages/PaketWisata/edit")
+);
+const DetailPaketWisata = React.lazy(() =>
+  import("./views/pages/PaketWisata/detail")
+);
+const Include = React.lazy(() => import("./views/pages/PaketWisata/Include"));
+const TambahInclude = React.lazy(() =>
+  import("./views/pages/PaketWisata/Include/tambah")
+);
+const EditInclude = React.lazy(() =>
+  import("./views/pages/PaketWisata/Include/edit")
+);
+const Exclude = React.lazy(() => import("./views/pages/PaketWisata/Exclude"));
+const TambahExclude = React.lazy(() =>
+  import("./views/pages/PaketWisata/Exclude/tambah")
+);
+const EditExclude = React.lazy(() =>
+  import("./views/pages/PaketWisata/Exclude/edit")
+);
+const Gambar = React.lazy(() => import("./views/pages/PaketWisata/Gambar"));
+const Deskripsi = React.lazy(() =>
+  import("./views/pages/PaketWisata/Deskripsi")
+);
+const TambahDeskripsi = React.lazy(() =>
+  import("./views/pages/PaketWisata/Deskripsi/tambah")
+);
+const EditDeskripsi = React.lazy(() =>
+  import("./views/pages/PaketWisata/Deskripsi/edit")
+);
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/theme', name: 'Theme', component: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', component: Colors },
-  { path: '/theme/typography', name: 'Typography', component: Typography },
-  { path: '/base', name: 'Base', component: Cards, exact: true },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', component: Cards },
-  { path: '/base/carousels', name: 'Carousel', component: Carousels },
-  { path: '/base/collapses', name: 'Collapse', component: Collapses },
-  { path: '/base/forms', name: 'Forms', component: BasicForms },
-  { path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons },
-  { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
-  { path: '/base/navbars', name: 'Navbars', component: Navbars },
-  { path: '/base/navs', name: 'Navs', component: Navs },
-  { path: '/base/paginations', name: 'Paginations', component: Paginations },
-  { path: '/base/popovers', name: 'Popovers', component: Popovers },
-  { path: '/base/progress-bar', name: 'Progress Bar', component: ProgressBar },
-  { path: '/base/switches', name: 'Switches', component: Switches },
-  { path: '/base/tables', name: 'Tables', component: Tables },
-  { path: '/base/tabs', name: 'Tabs', component: Tabs },
-  { path: '/base/tooltips', name: 'Tooltips', component: Tooltips },
-  { path: '/buttons', name: 'Buttons', component: Buttons, exact: true },
-  { path: '/buttons/buttons', name: 'Buttons', component: Buttons },
-  { path: '/buttons/button-dropdowns', name: 'Dropdowns', component: ButtonDropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups },
-  { path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons },
-  { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', component: Flags },
-  { path: '/icons/brands', name: 'Brands', component: Brands },
-  { path: '/notifications', name: 'Notifications', component: Alerts, exact: true },
-  { path: '/notifications/alerts', name: 'Alerts', component: Alerts },
-  { path: '/notifications/badges', name: 'Badges', component: Badges },
-  { path: '/notifications/modals', name: 'Modals', component: Modals },
-  { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
-  { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User }
+  // { path: "/ngetrip/dashboard", exact: true, name: "Home" },
+  // {
+  //   path: "/ngetrip",
+  //   name: "Dashboard",
+  //   component: Dashboard,
+  // },
+  {
+    path: "/ngetrip/admin",
+    name: "Dashboard",
+    component: Dashboard,
+    exact: true,
+  },
+  { path: "/ngetrip/admin/dashboard", name: "Dashboard", component: Dashboard },
+
+  // Agent Travel
+  {
+    path: "/ngetrip/admin/agent-travel",
+    name: "Agent Travel",
+    component: AgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/tambah",
+    name: "Tambah Agent Travel",
+    component: TambahAgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/edit/:id",
+    name: "Edit Agent Travel",
+    component: EditAgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/detail/:id",
+    name: "Detail Agent Travel",
+    component: DetailAgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/:id/kontak",
+    name: "Kontak Agent Travel",
+    component: KontakAgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/:id/kontak/tambah",
+    name: "Tambah Kontak",
+    component: TambahKontakAgentTravel,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/agent-travel/:id_agent_travel/kontak/:id_kontak/edit",
+    name: "Edit Kontak",
+    component: EditKontakAgentTravel,
+    exact: true,
+  },
+
+  // Paket Wisata
+  {
+    path: "/ngetrip/admin/paket-wisata",
+    name: "Paket Wisata",
+    component: PaketWisata,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/tambah",
+    name: "Tambah Paket Wisata",
+    component: TambahPaketWisata,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/edit/:id",
+    name: "Edit Paket Wisata",
+    component: EditPaketWisata,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/detail/:id",
+    name: "Detail Paket Wisata",
+    component: DetailPaketWisata,
+    exact: true,
+  },
+
+  // Include
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/include",
+    name: "Include",
+    component: Include,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/include/tambah",
+    name: "Tambah Include",
+    component: TambahInclude,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/include/edit/:id_include",
+    name: "Edit Include",
+    component: EditInclude,
+    exact: true,
+  },
+
+  // Exclude
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/exclude",
+    name: "Exclude",
+    component: Exclude,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/exclude/tambah",
+    name: "Tambah Exclude",
+    component: TambahExclude,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/exclude/edit/:id_exclude",
+    name: "Edit Exclude",
+    component: EditExclude,
+    exact: true,
+  },
+
+  // Gambar
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/gambar",
+    name: "Gambar",
+    component: Gambar,
+    exact: true,
+  },
+
+  // Deskripsi
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/deskripsi",
+    name: "Deskripsi",
+    component: Deskripsi,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/deskripsi/tambah",
+    name: "Tambah Deskripsi",
+    component: TambahDeskripsi,
+    exact: true,
+  },
+  {
+    path: "/ngetrip/admin/paket-wisata/:id/deskripsi/edit/:id_deskripsi",
+    name: "Edit Deskripsi",
+    component: EditDeskripsi,
+    exact: true,
+  },
 ];
 
 export default routes;
