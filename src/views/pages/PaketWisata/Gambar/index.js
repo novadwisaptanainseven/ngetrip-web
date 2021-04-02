@@ -13,7 +13,7 @@ import {
   CInput,
 } from "@coreui/react";
 import { useHistory } from "react-router-dom";
-import { LoadAnimationBlue, SampleImage } from "src/assets";
+import { LoadAnimationBlue } from "src/assets";
 // import { getImage } from "src/context/DownloadImage";
 import swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -22,6 +22,7 @@ import { deleteGambar } from "src/context/actions/Gambar/deleteGambar";
 import { getImage } from "src/context/DownloadImage";
 import { insertGambar } from "src/context/actions/Gambar/insertGambar";
 import { editStatusGambar } from "src/context/actions/Gambar/editStatusGambar";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 // import data from "./data";
 
 const MySwal = withReactContent(swal2);
@@ -176,58 +177,67 @@ const Gambar = ({ match }) => {
               <img src={LoadAnimationBlue} alt="load-animation" width={30} />
             </div>
           ) : (
-            <CDataTable
-              items={data}
-              fields={fields}
-              striped
-              itemsPerPage={10}
-              pagination
-              scopedSlots={{
-                gambar: (item) => (
-                  <td>
-                    <img
-                      width={200}
-                      src={getImage(item.file_gambar)}
-                      alt="gambar-paket-wisata"
-                      className="img-thumbnail"
-                    />
-                  </td>
-                ),
-                status: (item) => (
-                  <td>
-                    {item.status === 1 ? (
-                      <CButton type="button" color="success" disabled>
-                        Utama
-                      </CButton>
-                    ) : (
-                      <CButton
-                        type="button"
-                        color="dark"
-                        onClick={() =>
-                          handleStatusGambar(item.id_gambar_wisata, item.status)
-                        }
-                      >
-                        Jadikan Utama
-                      </CButton>
-                    )}
-                  </td>
-                ),
-                aksi: (item) => (
-                  <td>
-                    <CButtonGroup>
-                      <CButton
-                        type="button"
-                        color="danger"
-                        onClick={() => handleDelete(item.id_gambar_wisata)}
-                        disabled={item.status === 1 ? true : false}
-                      >
-                        Hapus
-                      </CButton>
-                    </CButtonGroup>
-                  </td>
-                ),
-              }}
-            />
+            <SimpleReactLightbox>
+              <SRLWrapper>
+                <CDataTable
+                  items={data}
+                  fields={fields}
+                  striped
+                  itemsPerPage={10}
+                  pagination
+                  scopedSlots={{
+                    gambar: (item) => (
+                      <td>
+                        <a href={getImage(item.file_gambar)}>
+                          <img
+                            width={200}
+                            src={getImage(item.file_gambar)}
+                            alt="gambar-paket-wisata"
+                            className="img-thumbnail"
+                          />
+                        </a>
+                      </td>
+                    ),
+                    status: (item) => (
+                      <td>
+                        {item.status === 1 ? (
+                          <CButton type="button" color="success" disabled>
+                            Utama
+                          </CButton>
+                        ) : (
+                          <CButton
+                            type="button"
+                            color="dark"
+                            onClick={() =>
+                              handleStatusGambar(
+                                item.id_gambar_wisata,
+                                item.status
+                              )
+                            }
+                          >
+                            Jadikan Utama
+                          </CButton>
+                        )}
+                      </td>
+                    ),
+                    aksi: (item) => (
+                      <td>
+                        <CButtonGroup>
+                          <CButton
+                            type="button"
+                            color="danger"
+                            onClick={() => handleDelete(item.id_gambar_wisata)}
+                            disabled={item.status === 1 ? true : false}
+                          >
+                            Hapus
+                          </CButton>
+                        </CButtonGroup>
+                      </td>
+                    ),
+                  }}
+                />
+              </SRLWrapper>
+            </SimpleReactLightbox>
           )}
         </CCardBody>
         <CCardFooter>

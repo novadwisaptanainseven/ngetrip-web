@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   CCard,
   CCardBody,
@@ -10,9 +10,19 @@ import {
 import CIcon from "@coreui/icons-react";
 
 import { cilLibraryBuilding, cilBriefcase, cilMoney } from "@coreui/icons";
-import { CChartBar } from "@coreui/react-chartjs";
+import { GlobalContext } from "src/context/Provider";
+import { getDashboardInformation } from "src/context/actions/Dashboard/getDashboardInformation";
+// import { CChartBar } from "@coreui/react-chartjs";
 
 const Dashboard = () => {
+  const { dashboardState, dashboardDispatch } = useContext(GlobalContext);
+  const { data } = dashboardState;
+
+  useEffect(() => {
+    // Get dashboard information
+    getDashboardInformation(dashboardDispatch);
+  }, [dashboardDispatch]);
+
   return (
     <>
       <CCard>
@@ -25,7 +35,7 @@ const Dashboard = () => {
           <CRow>
             <CCol sm="2" md="4">
               <CWidgetProgressIcon
-                header="3"
+                header={data ? data.total_agent_travel : "Loading..."}
                 text="Agent Travel"
                 color="gradient-info"
                 inverse
@@ -35,7 +45,7 @@ const Dashboard = () => {
             </CCol>
             <CCol sm="2" md="4">
               <CWidgetProgressIcon
-                header="9"
+                header={data ? data.total_paket_wisata : "Loading..."}
                 text="Paket Wisata"
                 color="gradient-success"
                 inverse
@@ -45,7 +55,7 @@ const Dashboard = () => {
             </CCol>
             <CCol sm="2" md="4">
               <CWidgetProgressIcon
-                header="20"
+                header={data ? data.total_transaksi : "Loading..."}
                 text="Transaksi"
                 color="gradient-warning"
                 inverse
@@ -54,7 +64,7 @@ const Dashboard = () => {
               </CWidgetProgressIcon>
             </CCol>
           </CRow>
-          <CRow>
+          {/* <CRow>
             <CCol>
               <CCard>
                 <CCardHeader>
@@ -79,7 +89,7 @@ const Dashboard = () => {
                 </CCardBody>
               </CCard>
             </CCol>
-          </CRow>
+          </CRow> */}
         </CCardBody>
       </CCard>
     </>

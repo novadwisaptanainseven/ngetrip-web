@@ -19,6 +19,7 @@ import { getImage } from "src/context/DownloadImage";
 import swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { deleteAgentTravel } from "src/context/actions/AgentTravel/deleteAgentTravel";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 
 const MySwal = withReactContent(swal2);
 
@@ -107,62 +108,68 @@ const AgentTravel = () => {
               <img src={LoadAnimationBlue} alt="load-animation" width={30} />
             </div>
           ) : (
-            <CDataTable
-              items={filteredData}
-              fields={fields}
-              striped
-              itemsPerPage={10}
-              pagination
-              scopedSlots={{
-                aksi: (item) => (
-                  <td>
-                    <CButtonGroup>
-                      <CButton
-                        type="button"
-                        color="info"
-                        onClick={() => goToDetail(item.id_agent_travel)}
-                      >
-                        Detail
-                      </CButton>
-                      <CButton
-                        type="button"
-                        color="warning"
-                        onClick={() => goToEdit(item.id_agent_travel)}
-                      >
-                        Edit
-                      </CButton>
-                      <CButton
-                        type="button"
-                        color="danger"
-                        onClick={() => handleDelete(item.id_agent_travel)}
-                      >
-                        Hapus
-                      </CButton>
-                    </CButtonGroup>
-                  </td>
-                ),
-                gambar: (item) => (
-                  <td>
-                    <img
-                      width={100}
-                      className="img-thumbnail"
-                      src={getImage(item.gambar)}
-                      alt="gambar-agent-travel"
-                    />
-                  </td>
-                ),
-                kontak: (item) => (
-                  <td>
-                    <CButton
-                      color="success"
-                      onClick={() => goToKontak(item.id_agent_travel)}
-                    >
-                      Lihat
-                    </CButton>
-                  </td>
-                ),
-              }}
-            />
+            <SimpleReactLightbox>
+              <SRLWrapper>
+                <CDataTable
+                  items={filteredData}
+                  fields={fields}
+                  striped
+                  itemsPerPage={10}
+                  pagination
+                  scopedSlots={{
+                    aksi: (item) => (
+                      <td>
+                        <CButtonGroup>
+                          <CButton
+                            type="button"
+                            color="info"
+                            onClick={() => goToDetail(item.id_agent_travel)}
+                          >
+                            Detail
+                          </CButton>
+                          <CButton
+                            type="button"
+                            color="warning"
+                            onClick={() => goToEdit(item.id_agent_travel)}
+                          >
+                            Edit
+                          </CButton>
+                          <CButton
+                            type="button"
+                            color="danger"
+                            onClick={() => handleDelete(item.id_agent_travel)}
+                          >
+                            Hapus
+                          </CButton>
+                        </CButtonGroup>
+                      </td>
+                    ),
+                    gambar: (item) => (
+                      <td>
+                        <a href={getImage(item.gambar)}>
+                          <img
+                            width={100}
+                            className="img-thumbnail"
+                            src={getImage(item.gambar)}
+                            alt="gambar-agent-travel"
+                          />
+                        </a>
+                      </td>
+                    ),
+                    kontak: (item) => (
+                      <td>
+                        <CButton
+                          color="success"
+                          onClick={() => goToKontak(item.id_agent_travel)}
+                        >
+                          Lihat
+                        </CButton>
+                      </td>
+                    ),
+                  }}
+                />
+              </SRLWrapper>
+            </SimpleReactLightbox>
           )}
         </CCardBody>
         <CCardFooter>

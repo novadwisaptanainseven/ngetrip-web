@@ -10,19 +10,13 @@ import {
   CDataTable,
   CCardFooter,
 } from "@coreui/react";
-import dataInclude from "./Include/data";
-import dataExclude from "./Exclude/data";
-import dataDeskripsi from "./Deskripsi/data";
-import { SampleImage } from "src/assets";
 import { getPaketWisataById } from "src/context/actions/PaketWisata/getPaketWisataById";
 import { getImage } from "src/context/DownloadImage";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 
 const DetailPaketWisata = ({ match }) => {
   const params = match.params;
   const history = useHistory();
-  const include = dataInclude;
-  const exclude = dataExclude;
-  const deskripsi = dataDeskripsi;
   const [data, setData] = useState("");
   const goBackToParent = () => {
     history.goBack();
@@ -115,19 +109,25 @@ const DetailPaketWisata = ({ match }) => {
                     <h5>Gambar Paket Wisata</h5>
                   </CCardHeader>
                   <CCardBody>
-                    <CRow>
-                      {data &&
-                        data.gambar_paket_wisata.map((item, index) => (
-                          <CCol md="4" className="mb-2 p-1">
-                            <img
-                              key={index}
-                              src={getImage(item.file_gambar)}
-                              alt="gambar-paket-wisata"
-                              className="img-thumbnail"
-                            />
-                          </CCol>
-                        ))}
-                    </CRow>
+                    <SimpleReactLightbox>
+                      <SRLWrapper>
+                        <CRow>
+                          {data &&
+                            data.gambar_paket_wisata.map((item, index) => (
+                              <CCol md="4" className="mb-2 p-1">
+                                <a href={getImage(item.file_gambar)}>
+                                  <img
+                                    key={index}
+                                    src={getImage(item.file_gambar)}
+                                    alt={`gambar-paket-wisata-${index + 1}`}
+                                    className="img-thumbnail"
+                                  />
+                                </a>
+                              </CCol>
+                            ))}
+                        </CRow>
+                      </SRLWrapper>
+                    </SimpleReactLightbox>
                   </CCardBody>
                   <CCardFooter>
                     <CButton type="button" color="primary" onClick={goToGambar}>

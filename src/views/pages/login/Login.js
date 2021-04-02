@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -16,10 +16,40 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
+  CAlert,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { useHistory } from "react-router-dom";
+import { GlobalContext } from "src/context/Provider";
+import { checkToken } from "src/helpers/checkToken";
+import { CLEAN_UP } from "src/context/actionTypes";
+import { login } from "src/context/actions/Auth";
+import { cilInfo } from "@coreui/icons";
 
 const Login = () => {
+  const history = useHistory();
+  const { loginState, loginDispatch } = useContext(GlobalContext);
+  const { data, loading, error } = loginState;
+  const [tokenAlert, setTokenAlert] = useState(true);
+
+  useEffect(() => {
+    if (tokenAlert) {
+      checkToken(history);
+    }
+
+    // Jika berhasil login, redirect ke dashboard
+    if (data) {
+      window.location.href = "/ngetrip/admin/dashboard";
+    }
+
+    // Ketika komponen di unmount
+    return () => {
+      loginDispatch({
+        type: CLEAN_UP,
+      });
+    };
+  }, [data, tokenAlert, loginDispatch, history]);
+
   // Inisialisasi state untuk handle login
   const initState = {
     username: "",
@@ -33,7 +63,9 @@ const Login = () => {
   });
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+    // Lakukan proses login
+    setTokenAlert(false);
+    login(values, loginDispatch);
   };
 
   return (
@@ -51,7 +83,14 @@ const Login = () => {
                   <h1>Login</h1>
                   <p className="text-muted">Login sebagai Administrator</p>
                   {/* Alert Error */}
-
+                  {error && (
+                    <CAlert closeButton className="alert-danger" fade>
+                      <span className="alert-inner--icon">
+                        <CIcon content={cilInfo} color="white" />
+                      </span>{" "}
+                      <span className="alert-inner--text ml-2">{error} !</span>
+                    </CAlert>
+                  )}
                   {/* End of Alert Error */}
                   <Formik
                     initialValues={initState}
@@ -140,11 +179,12 @@ const Login = () => {
                         <CRow>
                           <CCol xs="6">
                             <CButton
-                              type="submit"
                               color="primary"
-                              className="px-4 mt-3"
+                              className="px-4 mt-4"
+                              type="submit"
+                              disabled={loading ? true : false}
                             >
-                              Login
+                              {loading ? "Harap tunggu..." : "Login"}
                             </CButton>
                           </CCol>
                         </CRow>

@@ -42,7 +42,7 @@ const Deskripsi = ({ match }) => {
   useEffect(() => {
     // Get paket wisata
     getDeskripsi(params.id, setData);
-  }, []);
+  }, [params]);
 
   // Menangani tombol hapus
   const handleDelete = (id) => {

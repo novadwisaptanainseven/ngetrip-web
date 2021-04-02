@@ -52,8 +52,9 @@ class App extends Component {
               name="Home"
               render={(props) => <TheLayout {...props} />}
             />
-            {/* <Redirect from="/ngetrip/admin/" to="/ngetrip/admin/dashboard" /> */}
-            <Redirect from="/" to="/ngetrip/admin" />
+            <Redirect from="/dashboard/" to="/ngetrip/404" />
+            <Route component={Page404} />
+            {/* <Redirect from="/ngetrip/admin/*" to="/ngetrip/admin/dashboard" /> */}
           </Switch>
         </React.Suspense>
       </Router>

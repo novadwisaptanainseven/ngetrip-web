@@ -59,6 +59,12 @@ const EditDeskripsi = React.lazy(() =>
   import("./views/pages/PaketWisata/Deskripsi/edit")
 );
 
+// Transaksi
+const Transaksi = React.lazy(() => import("./views/pages/Transaksi"));
+
+// Pengaturan Akun
+const PengaturanAkun = React.lazy(() => import("./views/pages/PengaturanAkun"));
+
 const routes = [
   // { path: "/ngetrip/dashboard", exact: true, name: "Home" },
   // {
@@ -209,6 +215,22 @@ const routes = [
     path: "/ngetrip/admin/paket-wisata/:id/deskripsi/edit/:id_deskripsi",
     name: "Edit Deskripsi",
     component: EditDeskripsi,
+    exact: true,
+  },
+
+  // Transaksi
+  {
+    path: "/ngetrip/admin/transaksi",
+    name: "Transaksi",
+    component: Transaksi,
+    exact: true,
+  },
+
+  // Pengaturan Akun
+  {
+    path: "/ngetrip/admin/pengaturan-akun",
+    name: "Pengaturan Akun",
+    component: PengaturanAkun,
     exact: true,
   },
 ];

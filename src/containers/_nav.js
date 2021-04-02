@@ -1,6 +1,6 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
-import { cilLibraryBuilding, cilBriefcase } from "@coreui/icons";
+import { cilLibraryBuilding, cilBriefcase, cilMoney } from "@coreui/icons";
 
 const _nav = [
   {
@@ -25,8 +25,14 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Pengaturan",
-    to: "/ngetrip/admin/pengaturan",
+    name: "Transaksi",
+    to: "/ngetrip/admin/transaksi",
+    icon: <CIcon content={cilMoney} customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Pengaturan Akun",
+    to: "/ngetrip/admin/pengaturan-akun",
     icon: "cil-settings",
   },
 ];
